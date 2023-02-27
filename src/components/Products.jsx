@@ -24,7 +24,7 @@ export const Products = () => {
   useEffect(() => {
     axios
       .get(
-        "https://res.cloudinary.com/sivadass/raw/upload/v1535817394/json/products.json"
+        "https://veggyserver.onrender.com/user/vegitables"
       )
       .then((res) => {
         setItems(res.data);

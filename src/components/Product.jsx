@@ -9,6 +9,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import TextField from "@mui/material/TextField";
 import { CartContext } from "../App";
+import axios from "axios";
 export const Product = ({ item }) => {
   const CounterContainer = styled.div`
     display: flex;
@@ -39,7 +40,7 @@ export const Product = ({ item }) => {
   `;
   const { cart, setcart } = React.useContext(CartContext);
   const id=useId();
-  function AddToCart() {
+  async function AddToCart() {
     setcart([
       ...cart,
       {
@@ -49,6 +50,12 @@ export const Product = ({ item }) => {
         image:item.image
       },
     ]);
+    const data =await axios.post("https://veggyserver.onrender.com/user/addToCart",{
+      userId:123,
+      name: item.name,
+      price:item.price,
+      image:item.image
+    }) 
   }
   return (
     <Container>

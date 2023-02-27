@@ -31,6 +31,7 @@ export const Cart = () => {
   const { cart,setcart } = React.useContext(CartContext);
   useEffect(() => {
     setcart(cart)
+    console.log(cart);
   }, [cart])
   const [first, setfirst] = useState(false)
   return (

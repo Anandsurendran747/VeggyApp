@@ -30,7 +30,7 @@ export const CartItem = ({ item, i ,state,setstate}) => {
   
   const { cart, setcart } = useContext(CartContext);
  
-  
+  console.log(item);
    
   if (item!=null) {
     return (

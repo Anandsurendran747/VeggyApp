@@ -7,6 +7,7 @@ import Toolbar from "@mui/material/Toolbar";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { CartContext } from "../App";
 import style from "styled-components";
 import {Link, Outlet } from "react-router-dom";
 const Search = styled("div")(({ theme }) => ({
@@ -63,7 +64,9 @@ const ShoppingCartIconContainer = style.div`
 
 `;
 
+
 function Navbar() {
+  const { cart,setcart } = React.useContext(CartContext);
   const { setfilterKey } = React.useContext(SearchContext);
   return (
     <div>
@@ -85,6 +88,7 @@ function Navbar() {
             </TitileContainer>
 
             <ShoppingCartIconContainer>
+              <span style={{backgroundColor:"white",borderRadius:"50%",color:"black",padding:"2px",fontWeight:"200px"}}>{cart.length}</span>
               <Link to="/cart" style={{color:"white"}}><ShoppingCartIcon   fontSize="large" /></Link>
             </ShoppingCartIconContainer>
           </Toolbar>

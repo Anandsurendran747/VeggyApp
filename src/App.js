@@ -1,17 +1,23 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import { Products } from "./components/Products";
 import { Cart } from "./pages/Cart";
+import axios from 'axios';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 export const SearchContext = React.createContext();
 export const CartContext = React.createContext();
 function App() {
   const [filterKey, setfilterKey] = useState("");
   const [cart, setcart] = useState([]);
-  function changeCart(){
-    
-  }
+  useEffect(() => {
+    axios.get("https://veggyserver.onrender.com/user/getCart").then((data)=>{
+      setcart(data.data.cart);
+    }).catch((err)=>{
+      console.log(err);
+    })
+  }, [])
+  
   return (
     <div className="App">
       <SearchContext.Provider value={{ filterKey, setfilterKey }}>
