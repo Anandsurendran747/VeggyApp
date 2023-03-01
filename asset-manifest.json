@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/VeggyApp/static/css/main.e6c13ad2.css",
+    "main.js": "/VeggyApp/static/js/main.51df9d59.js",
+    "static/js/787.c337d5b1.chunk.js": "/VeggyApp/static/js/787.c337d5b1.chunk.js",
+    "index.html": "/VeggyApp/index.html",
+    "main.e6c13ad2.css.map": "/VeggyApp/static/css/main.e6c13ad2.css.map",
+    "main.51df9d59.js.map": "/VeggyApp/static/js/main.51df9d59.js.map",
+    "787.c337d5b1.chunk.js.map": "/VeggyApp/static/js/787.c337d5b1.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.51df9d59.js"
+  ]
+}
