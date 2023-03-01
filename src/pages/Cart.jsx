@@ -18,12 +18,15 @@ const ItemsContainer = styled.div`
 const ItemDetailContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 300px;
+  border-radius:20px;
   border: 4px solid #077915;
 `;
 const OrderButton = styled.button`
   background-color: #077915;
   color: white;
+  margin:5px;
+  border-radius:50px;
   flex: 1;
   padding: 5px;
 `;
@@ -34,6 +37,10 @@ export const Cart = () => {
     console.log(cart);
   }, [cart])
   const [first, setfirst] = useState(false)
+  var totalPrice=0;
+  cart.map((item)=>{
+    totalPrice=totalPrice+item.price;
+  })
   return (
     <Conatiner>
       <Grid container spacing={3}>
@@ -46,14 +53,14 @@ export const Cart = () => {
         </Grid>
         <Grid item xs={12} md={4}>
           <ItemDetailContainer>
-            <p style={{ flex: 1, fontSize: "25px", fontWeight: "200" }}>
+            {/* <p style={{ flex: 1, fontSize: "25px", fontWeight: "200" }}>
               Price Details:{" "}
+            </p> */}
+            {/* <br /> */}
+            <p style={{ flex: 3, fontSize: "25px", fontWeight: "500" ,padding:"10px"}}>
+              Total Amount = ₹{totalPrice}
             </p>
-            <br />
-            <p style={{ flex: 3, fontSize: "25px", fontWeight: "200" }}>
-              Total Amount - $ 120
-            </p>
-            <OrderButton>Place order</OrderButton>
+            <OrderButton onClick={()=>alert("This feature will come soon..")}>Place order</OrderButton>
           </ItemDetailContainer>
         </Grid>
       </Grid>

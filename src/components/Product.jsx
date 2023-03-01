@@ -1,4 +1,4 @@
-import React, { useState, useId } from "react";
+import React, { useState } from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -39,23 +39,70 @@ export const Product = ({ item }) => {
     }
   `;
   const { cart, setcart } = React.useContext(CartContext);
-  const id=useId();
-  async function AddToCart() {
+  const { cartCount, setcartCount } = React.useContext(CartContext);
+  // const id = useId();
+  async function addCart(id) {
+    // console.log(this.item);
+    // console.log("itemId" + item._id);
     setcart([
       ...cart,
       {
-        id: id,
+        itemId: id,
+        count: count,
         name: item.name,
         price: count * item.price,
-        image:item.image
+        image: item.image
       },
     ]);
-    const data =await axios.post("https://veggyserver.onrender.com/user/addToCart",{
-      userId:123,
+    console.log(cart);
+    setcartCount(cartCount + 1);
+    const data = await axios.post("https://veggyserver.onrender.com/user/addToCart", {
+      userId: 123,
+      itemId: id,
       name: item.name,
-      price:item.price,
-      image:item.image
-    }) 
+      price: count * item.price,
+      image: item.image,
+      count: count
+    })
+  }
+  async function AddToCart(id) {
+    console.log("id" + id);
+    const item = await cart.find(i => i.itemId == id);
+    // if (cart.length != 0) {
+    // var itemid = id;
+    console.log(item);
+    console.log(cart);
+    if (!item) {
+      console.log("true");
+      addCart(id);
+    }
+    else {
+      // console.log(itemid);
+      if (count!=1) {
+        
+        const cartitem = await axios.post("https://veggyserver.onrender.com/user/cartItemcount", {
+          id: id,
+          count:count
+        })
+      }else{
+        const cartitem = await axios.post("https://veggyserver.onrender.com/user/cartItemcount", {
+          id: id,
+          count:1
+        })
+      }
+      var i = cart.findIndex(x => x.itemId == id);
+      var foundItem=cart[i];
+      var c=foundItem.count;
+      foundItem.count=count+c;
+      var price=foundItem.price/c;
+      foundItem.price=price*(count+c);
+      cart[i]=foundItem;
+    }
+    // } else {
+    //   addCart(id, item);
+    // }
+
+
   }
   return (
     <Container>
@@ -110,7 +157,7 @@ export const Product = ({ item }) => {
           }}
         >
           <Button
-            onClick={AddToCart}
+            onClick={() => AddToCart(item._id)}
             style={{ color: "white", backgroundColor: "#077915" }}
             size="medium"
           >

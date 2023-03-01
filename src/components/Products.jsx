@@ -38,6 +38,7 @@ export const Products = () => {
   }
   return (
     <Products>
+      {/* <marquee  style={{marginBottom:"10px"}}>This site is not fully functional</marquee> */}
       <SubCont>
         <Grid container spacing={3}>
           {search(items).map((item, index) => {

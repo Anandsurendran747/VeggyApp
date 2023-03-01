@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import { Products } from "./components/Products";
@@ -10,18 +10,22 @@ export const CartContext = React.createContext();
 function App() {
   const [filterKey, setfilterKey] = useState("");
   const [cart, setcart] = useState([]);
+  const [cartCount, setcartCount] = useState(0)
   useEffect(() => {
-    axios.get("https://veggyserver.onrender.com/user/getCart").then((data)=>{
+    axios.get("https://veggyserver.onrender.com/user/getCart").then((data) => {
       setcart(data.data.cart);
-    }).catch((err)=>{
+
+      setcartCount(data.data.cart.length);
+    }).catch((err) => {
       console.log(err);
     })
   }, [])
-  
+
   return (
     <div className="App">
+      
       <SearchContext.Provider value={{ filterKey, setfilterKey }}>
-        <CartContext.Provider value={{ cart, setcart }}>
+        <CartContext.Provider value={{ cart, setcart, cartCount, setcartCount }}>
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Navbar />}>

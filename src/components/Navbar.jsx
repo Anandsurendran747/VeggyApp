@@ -67,6 +67,7 @@ const ShoppingCartIconContainer = style.div`
 
 function Navbar() {
   const { cart,setcart } = React.useContext(CartContext);
+  const { cartCount } = React.useContext(CartContext);
   const { setfilterKey } = React.useContext(SearchContext);
   return (
     <div>
@@ -88,7 +89,7 @@ function Navbar() {
             </TitileContainer>
 
             <ShoppingCartIconContainer>
-              <span style={{backgroundColor:"white",borderRadius:"50%",color:"black",padding:"2px",fontWeight:"200px"}}>{cart.length}</span>
+              <span style={{backgroundColor:"white",borderRadius:"50%",color:"black",padding:"2px",fontWeight:"200px"}}>{cartCount}</span>
               <Link to="/cart" style={{color:"white"}}><ShoppingCartIcon   fontSize="large" /></Link>
             </ShoppingCartIconContainer>
           </Toolbar>
