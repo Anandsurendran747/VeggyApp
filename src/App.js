@@ -30,7 +30,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Navbar />}>
                 <Route index element={<Products />} />
-                <Route path="/cart" element={<Cart />} />
+                <Route path="cart" element={<Cart />} />
               </Route>
             </Routes>
           </BrowserRouter>
