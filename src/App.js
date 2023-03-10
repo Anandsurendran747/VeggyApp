@@ -28,10 +28,10 @@ function App() {
         <CartContext.Provider value={{ cart, setcart, cartCount, setcartCount }}>
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Navbar />}>
-                <Route index element={<Products />} />
-                <Route path="cart" element={<Cart />} />
-              </Route>
+              <Route path="/" element={<Products/>}></Route>
+                {/* <Route index  /> */}
+                <Route path="/cart" element={<Cart/>} />
+              
             </Routes>
           </BrowserRouter>
           {/* <Cart/> */}
